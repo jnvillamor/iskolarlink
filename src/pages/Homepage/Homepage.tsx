@@ -26,15 +26,59 @@ const Section1 = () => {
   );
 };
 
+const Section2 = () => {
+  return (
+    <div className='my-[120px] flex flex-col gap-[80px] md:gap-[160px] 2xl:px-32 lg:px-16 px-6'>
+      <div className='mx-auto text-center lg:w-4/5'>
+        <h1 className='mb-6 textGradient1'>
+          Explore the <br /> Newest Pathways
+        </h1>
+        <p className='text-secondary font-Inter'>
+          Embark on a journey of exploration as you delve into the latest and most exhilarating internship possibilities spanning a multitude of
+          industries. Uncover the stepping stones that promise a transformative and fulfilling career voyage.
+        </p>
+      </div>
+
+      <div className='flex gap-6'>
+        <div className='w-1/3 hidden md:flex items-center'>
+          <img src='/images/homepage-section-hero-1.svg' alt='hero' className='w-full' />
+        </div>
+        <div className='w-full text-center lg:text-left lg:w-2/3 pt-16'>
+          <h1 className='mb-6 textGradient1'>Unveiling Student Internship Opportunities</h1>
+          <p className='text-secondary font-Inter'>
+            Your Gateway to transformative internships. Discover and secure a wide array of internships across industries, connecting ambitious
+            talents with leading companies. Unleash your potential and take the first step towards a rewarding and impactful career with Iskolarlink
+            today.
+          </p>
+        </div>
+      </div>
+
+      <div className='flex flex-row-reverse gap-6'>
+        <div className='w-1/3 hidden md:flex items-center'>
+          <img src='/images/homepage-section-hero-2.svg' alt='hero' className='w-full' />
+        </div>
+        <div className='w-full text-center lg:text-left lg:w-2/3 pt-16'>
+          <h1 className='mb-6 textGradient1'>A Vast Network of Company Collaborations</h1>
+          <p className='text-secondary font-Inter'>
+            Our platform showcases a vast network of collaborations, spanning promising startups to established tech giants. This diverse range of
+            partnerships translates into tailored internship opportunities for ambitious university students. Whether you aim for hands-on experience
+            with rising stars or to contribute to household names, our network offers abundant possibilities to shape your future.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const HomepageComponent = () => {
   return (
     <main className='bg-white bg-opacity-60'>
       <Header />
       <Section1 />
-      {/* <Section2 />
-      <Section3 />
-      <Section4 />
-      <Footer /> */}
+      <Section2 />
+      {/* <Section3 /> */}
+      {/* <Section4 /> */}
+      {/* <Footer /> */}
     </main>
   )
 }
