@@ -1,5 +1,8 @@
+import DataCard from "@/components/custom/DataCard";
 import Header from "@/components/custom/Header";
 import { Button } from "@/components/ui/button";
+import { Internship } from "@/models/internship";
+import { useEffect, useState } from "react";
 
 const Section1 = () => {
   return (
@@ -89,6 +92,32 @@ const Section3 = () => {
   );
 };
 
+const Section4 = () => {
+  const [internships, setInternships] = useState<Internship[]>([]);
+
+  useEffect(() => {
+  }, []);
+
+  return (
+    <div className='pt-20 pb-[160px] px-6 lg:px-16 2xl:px-32'>
+      <div className='w-full md:w-1/2 mx-auto text-center mb-16'>
+        <h1 className='text-center textGradient2 mb-6'>
+          Find Latest <br /> Opportunities
+        </h1>
+        <p className='text-secondary font-Inter'>
+          Discover the freshest and most exciting internship opportunities across various industries, paving the way for a transformative and
+          rewarding career journey.
+        </p>
+      </div>
+      <div className='flex flex-wrap justify-center gap-6'>
+        {internships.map((internship) => (
+          <DataCard key={internship.id} {...internship} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const HomepageComponent = () => {
   return (
     <main className='bg-white bg-opacity-60'>
@@ -96,7 +125,7 @@ const HomepageComponent = () => {
       <Section1 />
       <Section2 />
       <Section3 />
-      {/* <Section4 /> */}
+      <Section4 />
       {/* <Footer /> */}
     </main>
   )
