@@ -1,3 +1,4 @@
+import { getFeatured } from "@/api/get/getters";
 import DataCard from "@/components/custom/DataCard";
 import Header from "@/components/custom/Header";
 import { Button } from "@/components/ui/button";
@@ -98,6 +99,12 @@ const Section4 = () => {
   const [internships, setInternships] = useState<Internship[]>([]);
 
   useEffect(() => {
+    const fetchFeaturedInternships = async () => {
+      const response = await getFeatured();
+      setInternships(response);
+    }
+
+    fetchFeaturedInternships();
   }, []);
 
   return (
