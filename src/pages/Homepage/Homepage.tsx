@@ -1,8 +1,10 @@
 import DataCard from "@/components/custom/DataCard";
 import Header from "@/components/custom/Header";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Internship } from "@/models/internship";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Section1 = () => {
   return (
@@ -118,6 +120,33 @@ const Section4 = () => {
   );
 };
 
+const Footer = () => {
+  return (
+    <div className='pt-24 pb-10 bg-primary text-white'>
+      <h1 className='text-center mb-12 md:w-2/3 lg:3/5 mx-auto'>
+        Launch Your Future: Apply Today!
+      </h1>
+      <div className='w-fit mx-auto flex flex-col md:flex-row gap-1 md:gap-6'>
+        <div className='flex items-center gap-2'>
+          <Link to='/'>
+            <img src='/icons/facebook.svg' alt='facebook' className='w-5 md:w-9 aspect-square' />
+          </Link>
+          <span>Iskolarlink</span>
+        </div>
+        <div>
+          <Separator orientation='vertical' className='bg-white w-[2px]' decorative={true} />
+        </div>
+        <div className='flex items-center gap-2'>
+          <Link to='/'>
+            <img src='/icons/linked-in.svg' alt='facebook' className='w-5 md:w-9 aspect-square' />
+          </Link>
+          <span>Iskolarlink</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const HomepageComponent = () => {
   return (
     <main className='bg-white bg-opacity-60'>
@@ -126,7 +155,7 @@ const HomepageComponent = () => {
       <Section2 />
       <Section3 />
       <Section4 />
-      {/* <Footer /> */}
+      <Footer />
     </main>
   )
 }
