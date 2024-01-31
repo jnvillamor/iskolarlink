@@ -70,13 +70,32 @@ const Section2 = () => {
   );
 };
 
+const Section3 = () => {
+  return (
+    <div className='py-24 2xl:px-32 lg:px-16 px-6 flex justify-center items-center gap-6 bg-primary text-secondary-200'>
+      <div className='hidden md:block lg:w-1/3'>
+        <img src='/images/homepage-section-hero-3.svg' alt='hero' className='w-full' />
+      </div>
+      <div className='w-full text-center lg:text-left lg:w-2/3 py-6'>
+        <h1 className='font-bold textGradient3 mb-6'>Diverse Tech Fields, Limitless Possibilities</h1>
+        <p className='font-Inter'>
+          Our platform extends a warm welcome to students pursuing a wide spectrum of tech disciplines. Whether your heart beats for coding, design,
+          data analysis, cybersecurity, or any other facet of technology, we have tailored internship offerings that align with your passions.
+          Aspiring developers, creative designers, analytical thinkers, and cybersecurity enthusiasts – our range of opportunities ensures that every
+          student can find their niche and embark on a meaningful internship journey in their chosen field.
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const HomepageComponent = () => {
   return (
     <main className='bg-white bg-opacity-60'>
       <Header />
       <Section1 />
       <Section2 />
-      {/* <Section3 /> */}
+      <Section3 />
       {/* <Section4 /> */}
       {/* <Footer /> */}
     </main>
