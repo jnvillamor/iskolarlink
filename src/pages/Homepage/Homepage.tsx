@@ -1,15 +1,15 @@
-import { getFeatured } from "@/api/get/getters";
-import DataCard from "@/components/custom/DataCard";
-import Header from "@/components/custom/Header";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Internship } from "@/models/internship";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { getFeatured } from '@/api/get/getters';
+import DataCard from '@/components/custom/DataCard';
+import Header from '@/components/custom/Header';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Internship } from '@/models/internship';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Section1 = () => {
   return (
-    <div className='relative py-12 px-6 lg:px-16 2xl:px-32'>
+    <div className='relative py-12 container'>
       <div className='absolute top-1/2 -translate-y-1/2 bg-primary-100 lg:w-1/3 w-2/5 blur-[100px] lg:blur-[150px] aspect-square rounded-full -z-10'></div>
       <div className='flex md:gap-12'>
         <div className='w-full md:w-1/2 flex justify-center items-center'>
@@ -34,7 +34,7 @@ const Section1 = () => {
 
 const Section2 = () => {
   return (
-    <div className='my-[120px] flex flex-col gap-[80px] md:gap-[160px] 2xl:px-32 lg:px-16 px-6'>
+    <div className='my-[120px] flex flex-col gap-[80px] md:gap-[160px] container'>
       <div className='mx-auto text-center lg:w-4/5'>
         <h1 className='mb-6 textGradient1'>
           Explore the <br /> Newest Pathways
@@ -78,18 +78,20 @@ const Section2 = () => {
 
 const Section3 = () => {
   return (
-    <div className='py-24 2xl:px-32 lg:px-16 px-6 flex justify-center items-center gap-6 bg-primary text-secondary-200'>
-      <div className='hidden md:block lg:w-1/3'>
-        <img src='/images/homepage-section-hero-3.svg' alt='hero' className='w-full' />
-      </div>
-      <div className='w-full text-center lg:text-left lg:w-2/3 py-6'>
-        <h1 className='font-bold textGradient3 mb-6'>Diverse Tech Fields, Limitless Possibilities</h1>
-        <p className='font-Inter'>
-          Our platform extends a warm welcome to students pursuing a wide spectrum of tech disciplines. Whether your heart beats for coding, design,
-          data analysis, cybersecurity, or any other facet of technology, we have tailored internship offerings that align with your passions.
-          Aspiring developers, creative designers, analytical thinkers, and cybersecurity enthusiasts – our range of opportunities ensures that every
-          student can find their niche and embark on a meaningful internship journey in their chosen field.
-        </p>
+    <div className='bg-primary text-secondary-200'>
+      <div className='container py-24 flex justify-center items-center gap-6 '>
+        <div className='hidden md:block lg:w-1/3'>
+          <img src='/images/homepage-section-hero-3.svg' alt='hero' className='w-full' />
+        </div>
+        <div className='w-full text-center lg:text-left lg:w-2/3 py-6'>
+          <h1 className='font-bold textGradient3 mb-6'>Diverse Tech Fields, Limitless Possibilities</h1>
+          <p className='font-Inter'>
+            Our platform extends a warm welcome to students pursuing a wide spectrum of tech disciplines. Whether your heart beats for coding, design,
+            data analysis, cybersecurity, or any other facet of technology, we have tailored internship offerings that align with your passions.
+            Aspiring developers, creative designers, analytical thinkers, and cybersecurity enthusiasts – our range of opportunities ensures that
+            every student can find their niche and embark on a meaningful internship journey in their chosen field.
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -102,13 +104,13 @@ const Section4 = () => {
     const fetchFeaturedInternships = async () => {
       const response = await getFeatured();
       setInternships(response);
-    }
+    };
 
     fetchFeaturedInternships();
   }, []);
 
   return (
-    <div className='pt-20 pb-[160px] px-6 lg:px-16 2xl:px-32'>
+    <div className='pt-20 pb-[160px] container'>
       <div className='w-full md:w-1/2 mx-auto text-center mb-16'>
         <h1 className='text-center textGradient2 mb-6'>
           Find Latest <br /> Opportunities
@@ -130,9 +132,7 @@ const Section4 = () => {
 const Footer = () => {
   return (
     <div className='pt-24 pb-10 bg-primary text-white'>
-      <h1 className='text-center mb-12 md:w-2/3 lg:3/5 mx-auto'>
-        Launch Your Future: Apply Today!
-      </h1>
+      <h1 className='text-center mb-12 md:w-2/3 lg:3/5 mx-auto'>Launch Your Future: Apply Today!</h1>
       <div className='w-fit mx-auto flex flex-col md:flex-row gap-1 md:gap-6'>
         <div className='flex items-center gap-2'>
           <Link to='/'>
@@ -164,8 +164,8 @@ const HomepageComponent = () => {
       <Section4 />
       <Footer />
     </main>
-  )
-}
+  );
+};
 
 const Homepage = () => {
   return <HomepageComponent />;
