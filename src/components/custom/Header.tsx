@@ -21,7 +21,7 @@ const Header = () => {
   useEffect(() => {});
 
   return (
-    <nav className={`sticky top-0 py-6 w-full ${isScrolled ? 'bg-white' : 'bg-transparent'} z-10 2xl:px-32 lg:px-16 px-6`}>
+    <nav className={`sticky top-0 py-6 w-full ${isScrolled ? 'bg-white' : 'bg-transparent'} z-10 custom__container `}>
       <div className='flex justify-between items-end'>
         <div>
           <Link to={'/'}>

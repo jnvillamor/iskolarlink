@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Section1 = () => {
   return (
-    <div className='relative py-12 container'>
+    <div className='relative py-12 custom__container'>
       <div className='absolute top-1/2 -translate-y-1/2 bg-primary-100 lg:w-1/3 w-2/5 blur-[100px] lg:blur-[150px] aspect-square rounded-full -z-10'></div>
       <div className='flex md:gap-12'>
         <div className='w-full md:w-1/2 flex justify-center items-center'>
@@ -21,7 +21,7 @@ const Section1 = () => {
             </div>
             <p className='text-secondary mb-12'>Connecting aspiring tech innovators to career opportunities</p>
 
-            <Button className='rounded-full px-8 py-4 h-full lg:max-w-fit backgroundGradient1'>Kickstart your career &gt;</Button>
+            <Button className='rounded-full px-8 py-4 h-full lg:max-w-fit background__gradient1'>Kickstart your career &gt;</Button>
           </div>
         </div>
         <div className='hidden md:w-1/2 md:flex justify-start'>
@@ -34,9 +34,9 @@ const Section1 = () => {
 
 const Section2 = () => {
   return (
-    <div className='my-[120px] flex flex-col gap-[80px] md:gap-[160px] container'>
+    <div className='my-[120px] flex flex-col gap-[80px] md:gap-[160px] custom__container'>
       <div className='mx-auto text-center lg:w-4/5'>
-        <h1 className='mb-6 textGradient1'>
+        <h1 className='mb-6 text__gradient1'>
           Explore the <br /> Newest Pathways
         </h1>
         <p className='text-secondary font-Inter'>
@@ -50,7 +50,7 @@ const Section2 = () => {
           <img src='/images/homepage-section-hero-1.svg' alt='hero' className='w-full' />
         </div>
         <div className='w-full text-center lg:text-left lg:w-2/3 pt-16'>
-          <h1 className='mb-6 textGradient1'>Unveiling Student Internship Opportunities</h1>
+          <h1 className='mb-6 text__gradient1'>Unveiling Student Internship Opportunities</h1>
           <p className='text-secondary font-Inter'>
             Your Gateway to transformative internships. Discover and secure a wide array of internships across industries, connecting ambitious
             talents with leading companies. Unleash your potential and take the first step towards a rewarding and impactful career with Iskolarlink
@@ -64,7 +64,7 @@ const Section2 = () => {
           <img src='/images/homepage-section-hero-2.svg' alt='hero' className='w-full' />
         </div>
         <div className='w-full text-center lg:text-left lg:w-2/3 pt-16'>
-          <h1 className='mb-6 textGradient1'>A Vast Network of Company Collaborations</h1>
+          <h1 className='mb-6 text__gradient1'>A Vast Network of Company Collaborations</h1>
           <p className='text-secondary font-Inter'>
             Our platform showcases a vast network of collaborations, spanning promising startups to established tech giants. This diverse range of
             partnerships translates into tailored internship opportunities for ambitious university students. Whether you aim for hands-on experience
@@ -79,12 +79,12 @@ const Section2 = () => {
 const Section3 = () => {
   return (
     <div className='bg-primary text-secondary-200'>
-      <div className='container py-24 flex justify-center items-center gap-6 '>
+      <div className='custom__container py-24 flex justify-center items-center gap-6 '>
         <div className='hidden md:block lg:w-1/3'>
           <img src='/images/homepage-section-hero-3.svg' alt='hero' className='w-full' />
         </div>
         <div className='w-full text-center lg:text-left lg:w-2/3 py-6'>
-          <h1 className='font-bold textGradient3 mb-6'>Diverse Tech Fields, Limitless Possibilities</h1>
+          <h1 className='font-bold text__gradient3 mb-6'>Diverse Tech Fields, Limitless Possibilities</h1>
           <p className='font-Inter'>
             Our platform extends a warm welcome to students pursuing a wide spectrum of tech disciplines. Whether your heart beats for coding, design,
             data analysis, cybersecurity, or any other facet of technology, we have tailored internship offerings that align with your passions.
@@ -110,9 +110,9 @@ const Section4 = () => {
   }, []);
 
   return (
-    <div className='pt-20 pb-[160px] container'>
+    <div className='pt-20 pb-[160px] custom__container'>
       <div className='w-full md:w-1/2 mx-auto text-center mb-16'>
-        <h1 className='text-center textGradient2 mb-6'>
+        <h1 className='text-center text__gradient2 mb-6'>
           Find Latest <br /> Opportunities
         </h1>
         <p className='text-secondary font-Inter'>

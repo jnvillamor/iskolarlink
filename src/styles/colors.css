@@ -23,29 +23,29 @@
     --border: 0, 15%, 87%;
   }
 
-  .backgroundGradient1 {
+  .background__gradient1 {
     background: var(--background-gradient-1);
   }
 
-  .backgroundGradient2 {
+  .background__gradient2 {
     background: var(--background-gradient-2);
   }
 
-  .textGradient1 {
+  .text__gradient1 {
     background: var(--background-gradient-1);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .textGradient2 {
+  .text__gradient2 {
     background: var(--background-gradient-2);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .textGradient3 {
+  .text__gradient3 {
     background: var(--background-gradient-3);
     background-clip: text;
     -webkit-background-clip: text;

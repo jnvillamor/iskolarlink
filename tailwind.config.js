@@ -4,14 +4,6 @@ module.exports = {
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   prefix: '',
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: '1.5rem',
-        lg: '4rem',
-        '2xl': '8rem'
-      }
-    },
     extend: {
       boxShadow: {
         custom: '4px 4px 8px 0px rgba(69, 0, 0, 0.20)'
