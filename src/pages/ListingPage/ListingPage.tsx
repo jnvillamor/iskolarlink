@@ -5,7 +5,7 @@ import useListing from '@/hooks/useListing';
 import { MapPin, SearchIcon } from 'lucide-react';
 
 const ListingPageComponent = () => {
-  const { filteredInternships, error, search, isLoading, location, setLocation, setSearch } = useListing();
+  const { filteredInternships, error, isLoading, filters, dispathFilter } = useListing();
 
   return (
     <>
@@ -18,8 +18,8 @@ const ListingPageComponent = () => {
               <div className='flex px-2 items-center border rounded-lg'>
                 <SearchIcon size={16} className='text-secondary' />
                 <Input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  value={filters.title}
+                  onChange={(e) => dispathFilter({ type: 'SET_TITLE', payload: e.target.value })}
                   className='bg-transparent border-none'
                   placeholder='Search for Internships'
                 />
@@ -29,8 +29,8 @@ const ListingPageComponent = () => {
               <div className='flex px-2 items-center border rounded-lg'>
                 <MapPin size={16} className='text-secondary' />
                 <Input
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  value={filters.location}
+                  onChange={(e) => dispathFilter({ type: 'SET_LOCATION', payload: e.target.value })}
                   className='bg-transparent border-none'
                   placeholder='Enter Location'
                 />
@@ -42,6 +42,7 @@ const ListingPageComponent = () => {
         <div className='flex flex-wrap justify-center gap-6 mt-6 my-12'>
           {error && <div>{error}</div>}
           {isLoading && <div>Loading...</div>}
+          {!isLoading && filteredInternships.length === 0 && <div>No Internships Found</div>}
           {!isLoading && filteredInternships.map((internship) => <DataCard key={internship.id} {...internship} />)}
         </div>
       </main>
