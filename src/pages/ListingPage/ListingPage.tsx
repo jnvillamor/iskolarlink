@@ -1,11 +1,41 @@
 import DataCard from '@/components/custom/DataCard';
 import Header from '@/components/custom/Header';
-import { Input } from '@/components/ui/input';
 import useListing from '@/hooks/useListing';
+import { Input } from '@/components/ui/input';
+import { Select, SelectItem, SelectTrigger } from '@/components/ui/select';
+import { FilterButtons, FilterButtonsOptions } from '@/models/internship';
+import { SelectContent, SelectValue } from '@radix-ui/react-select';
 import { MapPin, SearchIcon } from 'lucide-react';
 
+type FilterButtonsType = {
+  filter: FilterButtons;
+  getOptions: (key: string) => FilterButtonsOptions;
+  dispatchFilter: (action: any) => void;
+};
+const FilterButtonsComponent = (props: FilterButtonsType) => {
+  const { filter, getOptions, dispatchFilter } = props;
+  const options = getOptions(filter);
+
+  if (options.type === 'single-select') {
+    return (
+      <Select onValueChange={(value) => dispatchFilter({ type: options.dispatch, payload: value })}>
+        <SelectTrigger>
+          <SelectValue placeholder={options.label} />
+        </SelectTrigger>
+        <SelectContent className='bg-white'>
+          {options.options.map((option) => (
+            <SelectItem key={options.label} value={option}>
+              {option}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    );
+  }
+};
+
 const ListingPageComponent = () => {
-  const { filteredInternships, error, isLoading, filters, dispathFilter } = useListing();
+  const { filteredInternships, error, isLoading, filters, filterButtons, dispathFilter, getOptions } = useListing();
 
   return (
     <>
@@ -35,6 +65,13 @@ const ListingPageComponent = () => {
                   placeholder='Enter Location'
                 />
               </div>
+            </div>
+            <div className='flex gap-1'>
+              {filterButtons.map((filter, index) => (
+                <div key={index}>
+                  <FilterButtonsComponent filter={filter} getOptions={getOptions} dispatchFilter={dispathFilter} />
+                </div>
+              ))}
             </div>
           </div>
           <div className='px-6 py-3'></div>

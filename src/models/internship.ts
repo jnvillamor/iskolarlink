@@ -33,3 +33,12 @@ export type FilterAction =
   | { type: 'SET_ROLE'; payload: string }
   | { type: 'SET_SKILL_REQUIREMENTS'; payload: string }
   | { type: 'SET_WORK_SETUP'; payload: 'Remote' | 'Onsite' | 'Hybrid' | null };
+
+export type FilterButtons = 'compensation' | 'role' | 'skill_requirements' | 'work_setup';
+
+export type FilterButtonsOptions = {
+  label: string;
+  options: string[];
+  type: 'multi-select' | 'single-select';
+  dispatch: FilterAction['type'];
+};

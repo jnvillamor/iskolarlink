@@ -1,5 +1,5 @@
 import { getInternships } from '@/api/get/getters';
-import { Filter, FilterAction, Internship } from '@/models/internship';
+import { Filter, FilterAction, FilterButtons, FilterButtonsOptions, Internship } from '@/models/internship';
 import { useEffect, useReducer, useState } from 'react';
 
 const useInternships = () => {
@@ -76,7 +76,10 @@ const useInternships = () => {
             value = value as string;
             const internshipValue = internship[key as keyof Internship] as string;
 
-            return internshipValue.toLowerCase().includes(value.toLowerCase());
+            if (key === 'title' || key === 'location') {
+              return internshipValue.toLowerCase().includes(value.toLowerCase());
+            }
+            return value === internshipValue;
           }
 
           if (typeof value === 'object') {
@@ -94,12 +97,56 @@ const useInternships = () => {
     return () => clearTimeout(timerId);
   }, [filters, internships]);
 
+  const getOptions = (key: string): FilterButtonsOptions => {
+    let options;
+    switch (key) {
+      case 'role':
+        options = {
+          label: 'Role',
+          options: Array.from(new Set(internships.map((internship) => internship.role))),
+          type: 'multi-select',
+          dispatch: 'SET_ROLE'
+        };
+        break;
+      case 'skill_requirements':
+        options = {
+          label: 'Skill Requirements',
+          options: Array.from(new Set(internships.map((internship) => internship.skill_requirements).flat())),
+          type: 'multi-select',
+          dispatch: 'SET_SKILL_REQUIREMENTS'
+        };
+        break;
+      case 'compensation':
+        options = {
+          label: 'Payment',
+          options: ['Paid', 'Unpaid'],
+          type: 'single-select',
+          dispatch: 'SET_COMPENSATION'
+        };
+        break;
+      case 'work_setup':
+        options = {
+          label: 'Work Setup',
+          options: ['Remote', 'Onsite', 'Hybrid'],
+          type: 'single-select',
+          dispatch: 'SET_WORK_SETUP'
+        };
+        break;
+    }
+
+    return options as FilterButtonsOptions;
+  };
+
+  const filterButtons = ['compensation', 'role', 'work_setup', 'skill_requirements'] as FilterButtons[];
+
   return {
     filteredInternships,
     error,
     isLoading,
     filters,
-    dispathFilter
+    filterButtons,
+    dispathFilter,
+    getOptions
   };
 };
 
