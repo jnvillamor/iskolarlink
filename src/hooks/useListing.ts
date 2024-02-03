@@ -6,18 +6,21 @@ const useInternships = () => {
   const [internships, setInternships] = useState<Internship[]>([]);
   const [search, setSearch] = useState<string>('');
   const [filteredInternships, setFilteredInternships] = useState<Internship[]>([]);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [location, setLocation] = useState<string>('');
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchInternships = async () => {
       const response = await getInternships();
 
       if (response.status === 'error') {
         setError(response.message as string);
-      } else { 
+      } else {
         setInternships(response.data as Internship[]);
         setFilteredInternships(response.data as Internship[]);
+        setIsLoading(false);
       }
     };
 
@@ -25,31 +28,42 @@ const useInternships = () => {
   }, []);
 
   useEffect(() => {
-    if(search === '') {
+    if (search === '' && location === '') {
       setFilteredInternships(internships);
       return;
     }
 
-    setIsSearching(true);
+    setIsLoading(true);
     const timerId = setTimeout(() => {
-      setIsSearching(false);
-      setFilteredInternships(
-        internships.filter((internship) =>
+      let results = internships;
+
+      if (search) {
+        results = results.filter((internship) => (
           internship.title.toLowerCase().includes(search.toLowerCase())
-        )
-      );
-    }, 500)
+        ))
+      }
 
-    return () => clearTimeout(timerId)
-  }, [search])
+      if (location) {
+        results = results.filter((internship) => (
+          internship.location.toLowerCase().includes(location.toLowerCase())
+        ))
+      }
+      
+      setFilteredInternships(results);
+      setIsLoading(false);
+    }, 500); 
 
+    return () => clearTimeout(timerId);
+  }, [search, location]);
 
   return {
     filteredInternships,
     error,
     search,
-    isSearching,
-    setSearch,
+    isLoading,
+    location,
+    setLocation,
+    setSearch
   };
 };
 

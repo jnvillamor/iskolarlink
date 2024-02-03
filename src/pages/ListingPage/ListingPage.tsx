@@ -5,7 +5,7 @@ import useListing from '@/hooks/useListing';
 import { MapPin, SearchIcon } from 'lucide-react';
 
 const ListingPageComponent = () => {
-  const { filteredInternships, error, search, setSearch } = useListing();
+  const { filteredInternships, error, search, isLoading, location, setLocation, setSearch } = useListing();
 
   return (
     <>
@@ -28,7 +28,12 @@ const ListingPageComponent = () => {
             <div className='flex'>
               <div className='flex px-2 items-center border rounded-lg'>
                 <MapPin size={16} className='text-secondary' />
-                <Input className='bg-transparent border-none' placeholder='Enter Location' />
+                <Input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className='bg-transparent border-none'
+                  placeholder='Enter Location'
+                />
               </div>
             </div>
           </div>
@@ -36,9 +41,8 @@ const ListingPageComponent = () => {
         </div>
         <div className='flex flex-wrap justify-center gap-6 mt-6 my-12'>
           {error && <div>{error}</div>}
-          {filteredInternships.map((internship) => (
-            <DataCard key={internship.id} {...internship} />
-          ))}
+          {isLoading && <div>Loading...</div>}
+          {!isLoading && filteredInternships.map((internship) => <DataCard key={internship.id} {...internship} />)}
         </div>
       </main>
     </>
