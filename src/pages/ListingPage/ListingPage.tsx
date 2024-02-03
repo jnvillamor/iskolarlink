@@ -1,31 +1,44 @@
-import { getInternships } from '@/api/get/getters';
 import DataCard from '@/components/custom/DataCard';
 import Header from '@/components/custom/Header';
-import { Internship } from '@/models/internship';
-import React, { useEffect, useState } from 'react';
+import { Input } from '@/components/ui/input';
+import useListing from '@/hooks/useListing';
+import { MapPin, SearchIcon } from 'lucide-react';
 
 const ListingPageComponent = () => {
-  // const [internships, setInternships] = useState<Internship[]>([]);
-
-  // useEffect(() => {
-  //   const fetchInternships = async () => {
-  //     const response = await getInternships();
-
-  //     setInternships(response);
-  //   };
-
-  //   fetchInternships();
-  // });
+  const { filteredInternships, error, search, setSearch } = useListing();
 
   return (
     <>
       <Header />
       <main className='custom__container'>
-        <h1 className='text-primary text-left'>Listings</h1>
-        <div className='container flex flex-wrap justify-center gap-6 mt-6 my-12'>
-          {/* {internships.map((internship) => (
-          <DataCard key={internship.id} {...internship} />
-        ))} */}
+        <h1 className='text-primary text-left my-12'>Listings</h1>
+        <div className='border shadow-custom rounded-lg'>
+          <div className='px-6 py-3 flex items-center gap-1 border-b'>
+            <div className='flex'>
+              <div className='flex px-2 items-center border rounded-lg'>
+                <SearchIcon size={16} className='text-secondary' />
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className='bg-transparent border-none'
+                  placeholder='Search for Internships'
+                />
+              </div>
+            </div>
+            <div className='flex'>
+              <div className='flex px-2 items-center border rounded-lg'>
+                <MapPin size={16} className='text-secondary' />
+                <Input className='bg-transparent border-none' placeholder='Enter Location' />
+              </div>
+            </div>
+          </div>
+          <div className='px-6 py-3'></div>
+        </div>
+        <div className='flex flex-wrap justify-center gap-6 mt-6 my-12'>
+          {error && <div>{error}</div>}
+          {filteredInternships.map((internship) => (
+            <DataCard key={internship.id} {...internship} />
+          ))}
         </div>
       </main>
     </>
