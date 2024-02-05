@@ -9,8 +9,8 @@ const useInternships = () => {
   const [error, setError] = useState<string | null>(null);
 
   const initialiFilter: Filter = {
-    title: '',
-    location: '',
+    title: undefined,
+    location: undefined,
     compensation: null,
     role: [],
     skill_requirements: [],
@@ -29,9 +29,9 @@ const useInternships = () => {
         return { ...state, compensation: payload };
       case 'SET_ROLE':
         if (state.role.includes(payload)) {
-          return { ...state, roles: state.role.filter((r) => r !== payload) };
+          return { ...state, role: state.role.filter((r) => r !== payload) };
         } else {
-          return { ...state, roles: [...state.role, payload] };
+          return { ...state, role: [...state.role, payload] };
         }
       case 'SET_SKILL_REQUIREMENTS':
         if (state.skill_requirements.includes(payload)) {
@@ -66,11 +66,12 @@ const useInternships = () => {
   }, []);
 
   useEffect(() => {
+    console.log(filters);
     setIsLoading(true);
     const timerId = setTimeout(() => {
       const results = internships.filter((internship) => {
         return Object.entries(filters).every(([key, value]) => {
-          if (value === null || value === '' || value.length === 0) return true;
+          if (value === undefined || value === null || value.length === 0) return true;
 
           if (typeof value === 'string') {
             value = value as string;
@@ -84,9 +85,26 @@ const useInternships = () => {
 
           if (typeof value === 'object') {
             value = value as string[];
-            const internshipValue = internship[key as keyof Internship] as string[];
-            if (!internshipValue) return false;
-            return value.some((v) => internshipValue.includes(v));
+
+            if (key === 'role') {
+              return value.includes(internship.role.toLowerCase());
+            }
+
+            if (key === 'skill_requirements') {
+              const internshipSkills = internship.skill_requirements as string[];
+              if (!internshipSkills) return false;
+
+              let result = false;
+              internshipSkills.forEach((skill) => {
+                if (value?.includes(skill.toLowerCase())) {
+                  result = true;
+                }
+              });
+
+              return result;
+            }
+
+            return false;
           }
         });
       });
@@ -111,7 +129,7 @@ const useInternships = () => {
       case 'skill_requirements':
         options = {
           label: 'Skill Requirements',
-          options: Array.from(new Set(internships.map((internship) => internship.skill_requirements).flat())),
+          options: Array.from(new Set(internships.map((internship) => (internship.skill_requirements ? internship.skill_requirements : [])).flat())),
           type: 'multi-select',
           dispatch: 'SET_SKILL_REQUIREMENTS'
         };

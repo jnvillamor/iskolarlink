@@ -18,8 +18,8 @@ export type Internship = {
 };
 
 export type Filter = {
-  title: string;
-  location: string;
+  title: string | undefined;
+  location: string | undefined;
   compensation: 'Paid' | 'Unpaid' | null;
   role: string[];
   skill_requirements: string[];
